@@ -5,8 +5,15 @@
   "directories": {
     "lib": "./lib"
   },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
   "main": "./lib/main",
   "repository": "git@github.com:NYTimes/elemental-live-client.git",
   "author": "The New York Times Company",
-  "license": "Apache 2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
 }
