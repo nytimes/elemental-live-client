@@ -1,8 +1,9 @@
 import ElementalClient from '../lib/elemental-client';
+import LiveEvents from '../lib/live-events';
 import {assert} from 'chai';
 
 describe('ElementalClient', () => {
-  it('success sendRequest without data', (done) => {
+  it('sendRequest should support "data-less" requests and resolve promise on response', (done) => {
     const client = new ElementalClient('http://my-elemental-server');
     const eventList = [{name: 'Live event 1'}, {name: 'Live event 2'}];
 
@@ -27,7 +28,7 @@ describe('ElementalClient', () => {
     );
   });
 
-  it('success sendRequest with data', (done) => {
+  it('sendRequest should send data and resolve promise on response', (done) => {
     const client = new ElementalClient('http://my-elemental-server');
     const eventList = [{name: 'Live event 1'}, {name: 'Live event 2'}];
 
@@ -52,7 +53,7 @@ describe('ElementalClient', () => {
     );
   });
 
-  it('failed sendRequest (network error)', (done) => {
+  it('sendRequest should reject promise on request errors', (done) => {
     const client = new ElementalClient('http://my-elemental-server');
 
     client.req = (opts, callback) => {
@@ -68,7 +69,7 @@ describe('ElementalClient', () => {
     );
   })
 
-  it('failed sendRequest (http error)', (done) => {
+  it('sendRequest should reject promise on http errors', (done) => {
     const client = new ElementalClient('http://my-elemental-server');
 
     client.req = (opts, callback) => {
@@ -83,5 +84,12 @@ describe('ElementalClient', () => {
         done();
       }
     );
+  });
+
+  it('liveEvents should return a liveEvents instance', () => {
+    const client = new ElementalClient('http://my-elemental-server');
+    const le = client.liveEvents();
+
+    assert.deepEqual(le, new LiveEvents(client));
   });
 });
