@@ -96,8 +96,29 @@ describe('ElementalClient', () => {
 
   it('presets should return a presets Resource', () => {
     const client = new ElementalClient('http://my-elemental-server');
-    const le = client.presets();
+    const presets = client.presets();
 
-    assert.deepEqual(le, new Resource(client, 'presets'));
+    assert.deepEqual(presets, new Resource(client, 'presets'));
+  });
+
+  it('schedules should return a schedules Resource', () => {
+    const client = new ElementalClient('http://my-elemental-server');
+    const scheds = client.schedules();
+
+    assert.deepEqual(scheds, new Resource(client, 'schedules'));
+  });
+
+  it('liveEventProfiles should return a live_event_profiles Resource', () => {
+    const client = new ElementalClient('http://my-elemental-server');
+    const lep = client.liveEventProfiles();
+
+    assert.deepEqual(lep, new Resource(client, 'live_event_profiles'));
+  });
+
+  it('presetCategories should return a preset_categories Resource', () => {
+    const client = new ElementalClient('http://my-elemental-server');
+    const presetCategories = client.presetCategories();
+
+    assert.deepEqual(presetCategories, new Resource(client, 'preset_categories'));
   });
 });
