@@ -89,7 +89,8 @@ describe('ElementalClient', () => {
     const client = new ElementalClient('http://my-elemental-server');
     const le = client.liveEvents();
 
-    assert.deepEqual(le, new LiveEvent(client));
+    assert(le instanceof LiveEvent);
+    assert.equal(le.elementalClient, client);
   });
 
   it('presets should return a presets Resource', () => {
