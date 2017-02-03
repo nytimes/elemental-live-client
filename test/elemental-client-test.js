@@ -1,5 +1,5 @@
 import ElementalClient from '../lib/elemental-client';
-import {LiveEvents} from '../lib/live-events';
+import {LiveEvent} from '../lib/live-event';
 import {assert} from 'chai';
 
 describe('ElementalClient', () => {
@@ -90,6 +90,6 @@ describe('ElementalClient', () => {
     const client = new ElementalClient('http://my-elemental-server');
     const le = client.liveEvents();
 
-    assert.deepEqual(le, new LiveEvents(client));
+    assert.deepEqual(le, new LiveEvent(client));
   });
 });

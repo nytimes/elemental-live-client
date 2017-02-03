@@ -1,12 +1,11 @@
-import {LiveEvents} from '../lib/live-events';
+import {LiveEvent} from '../lib/live-event';
 import {Resource} from '../lib/resource';
 import {assert} from 'chai';
-import sinon from 'sinon';
 
-describe('LiveEvents', () => {
-  it('LiveEvents should be a Resource', () => {
+describe('LiveEvent', () => {
+  it('LiveEvent should be a Resource', () => {
     const client = {'some': 'object'};
-    const le = new LiveEvents(client);
+    const le = new LiveEvent(client);
 
     assert(le instanceof Resource);
     assert.equal(le.elementalClient, client);
