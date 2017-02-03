@@ -22,8 +22,7 @@ describe('ElementalClient', () => {
 
     client.sendRequest('GET', '/api/live_events', {page: '3', 'per_page': 30}, null).then(
       (data) => {
-        assert.equal(data.statusCode, 200);
-        assert.deepEqual(data.body, eventList);
+        assert.deepEqual(data, eventList);
         done();
       }
     );
@@ -47,8 +46,7 @@ describe('ElementalClient', () => {
 
     client.sendRequest('POST', '/api/live_events', null, {name: 'My live event!'}).then(
       (data) => {
-        assert.equal(data.statusCode, 200);
-        assert.deepEqual(data.body, eventList);
+        assert.deepEqual(data, eventList);
         done();
       }
     );
