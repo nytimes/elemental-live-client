@@ -4,6 +4,7 @@ node_js:
   - 7
 install:
   - npm install -g codecov yarn
+  - yarn
 script:
   - yarn run lint
   - yarn run coverage
