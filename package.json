@@ -6,7 +6,7 @@
     "lib": "./lib"
   },
   "scripts": {
-    "test": "mocha --reporter spec",
+    "test": "mocha --compilers js:babel-register --reporter spec",
     "lint": "eslint lib"
   },
   "main": "./lib/main",
@@ -14,6 +14,9 @@
   "author": "The New York Times Company",
   "license": "Apache-2.0",
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-register": "^6.22.0",
     "chai": "^3.5.0",
     "eslint": "^3.14.1",
     "eslint-config-standard": "^6.2.1",
