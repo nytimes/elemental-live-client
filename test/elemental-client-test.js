@@ -1,5 +1,6 @@
 import ElementalClient from '../lib/elemental-client';
 import {LiveEvent} from '../lib/live-event';
+import {Resource} from '../lib/resource';
 import {assert} from 'chai';
 
 describe('ElementalClient', () => {
@@ -86,10 +87,17 @@ describe('ElementalClient', () => {
     );
   });
 
-  it('liveEvents should return a liveEvents instance', () => {
+  it('liveEvents should return a LiveEvent instance', () => {
     const client = new ElementalClient('http://my-elemental-server');
     const le = client.liveEvents();
 
     assert.deepEqual(le, new LiveEvent(client));
+  });
+
+  it('presets should return a presets Resource', () => {
+    const client = new ElementalClient('http://my-elemental-server');
+    const le = client.presets();
+
+    assert.deepEqual(le, new Resource(client, 'presets'));
   });
 });
