@@ -1,5 +1,5 @@
 import ElementalClient from '../lib/elemental-client';
-import LiveEvents from '../lib/live-events';
+import {LiveEvents} from '../lib/live-events';
 import {assert} from 'chai';
 
 describe('ElementalClient', () => {
