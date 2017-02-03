@@ -8,7 +8,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-register --reporter spec",
     "build": "babel -s -d dist lib",
-    "lint": "eslint lib"
+    "lint": "eslint lib test"
   },
   "main": "./lib/main",
   "repository": "git@github.com:NYTimes/elemental-live-client.git",
@@ -24,6 +24,10 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7"
+  },
+  "dependencies": {
+    "request": "^2.79.0"
   }
 }
