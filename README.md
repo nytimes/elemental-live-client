@@ -1,5 +1,7 @@
 # elemental-live-client
 
+[![Build Status](https://travis-ci.org/NYTimes/elemental-live-client.svg?branch=master)](https://travis-ci.org/NYTimes/elemental-live-client)
+
 JS library to communicate with Elemental live API.
 
 ## Usage
