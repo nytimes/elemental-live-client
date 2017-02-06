@@ -6,8 +6,8 @@ install:
   - npm install -g codecov yarn
   - yarn
 script:
-  - yarn run lint
-  - yarn run coverage
+  - yarn lint
+  - yarn coverage
   - codecov
 notifications:
   slack:
