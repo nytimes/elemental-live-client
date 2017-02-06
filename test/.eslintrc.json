@@ -1,8 +1,10 @@
 {
   "env": {
+    "node": true,
     "mocha": true
   },
   "rules": {
+    "no-process-env": "off",
     "max-statements": "off"
   }
 }
