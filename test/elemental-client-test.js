@@ -120,4 +120,11 @@ describe('ElementalClient', () => {
 
     assert.deepEqual(presetCategories, new Resource(client, 'preset_categories'));
   });
+
+  it('devices should return a devices Resource', () => {
+    const client = new ElementalClient('http://my-elemental-server');
+    const devices = client.devices();
+
+    assert.deepEqual(devices, new Resource(client, 'devices'));
+  });
 });
