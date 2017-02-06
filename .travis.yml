@@ -2,8 +2,14 @@ language: node_js
 node_js:
   - 6
   - 7
+addons:
+  apt:
+    sources:
+      - sourceline: "deb https://dl.yarnpkg.com/debian/ stable main"
+    packages:
+      - yarn
 install:
-  - npm install -g codecov yarn
+  - npm install -g codecov
   - yarn
 script:
   - yarn lint
