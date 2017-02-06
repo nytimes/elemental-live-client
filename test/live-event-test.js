@@ -100,4 +100,20 @@ describe('LiveEvent', () => {
     assert.equal(result, testData.retval);
     assert(testData.sendRequest.calledWith('POST', '/api/live_events/195/adjust_audio_gain', null, {'gain': 3}));
   });
+
+  it('eventPriority should send request to get priority of given event', () => {
+    const testData = getInstance();
+    const result = testData.instance.eventPriority(199);
+
+    assert.equal(result, testData.retval);
+    assert(testData.sendRequest.calledWith('GET', '/api/live_events/199/priority'));
+  });
+
+  it('setEventPriority should send request to set the priority of given event', () => {
+    const testData = getInstance();
+    const result = testData.instance.setEventPriority(199, 1);
+
+    assert.equal(result, testData.retval);
+    assert(testData.sendRequest.calledWith('POST', '/api/live_events/199/priority', null, {'priority': 1}));
+  });
 });
