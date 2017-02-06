@@ -102,4 +102,14 @@ describe('LiveEvent', () => {
     assert.equal(result, retval);
     assert(client.sendRequest.calledWith('POST', '/api/live_events/195/unmute_audio'));
   });
+
+  it('adjustAudioGain should send request to adjust audio gain with proper parameter', () => {
+    const retval = {key: 'value'};
+    const client = {sendRequest: sinon.stub().returns(retval)};
+    const le = new LiveEvent(client);
+    const result = le.adjustAudioGain(195, 3);
+
+    assert.equal(result, retval);
+    assert(client.sendRequest.calledWith('POST', '/api/live_events/195/adjust_audio_gain', null, {'gain': 3}));
+  });
 });
