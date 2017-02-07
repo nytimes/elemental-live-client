@@ -5,6 +5,7 @@
   },
   "rules": {
     "no-process-env": "off",
-    "max-statements": "off"
+    "max-statements": "off",
+    "no-console": "off"
   }
 }
