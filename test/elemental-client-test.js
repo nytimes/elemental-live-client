@@ -2,9 +2,10 @@ import ElementalClient from '../lib/elemental-client';
 import {LiveEvent} from '../lib/live-event';
 import {Resource} from '../lib/resource';
 import {assert} from 'chai';
+import {xmlEventList} from './data-test';
 
 describe('ElementalClient', () => {
-  it('sendRequest should support "data-less" requests and resolve promise on response', (done) => {
+  it('sendRequest should support "data-less" requests and resolve promise on response', () => {
     const client = new ElementalClient('http://my-elemental-server');
     const eventList = [{name: 'Live event 1'}, {name: 'Live event 2'}];
 
@@ -14,40 +15,48 @@ describe('ElementalClient', () => {
         url: '/api/live_events',
         qs: {'page': '3', 'per_page': 30},
         headers: {},
-        json: false,
         body: null,
       });
-      callback(null, {statusCode: 200}, eventList);
+      callback(null, {statusCode: 200, headers: {}}, eventList);
     };
 
-    client.sendRequest('GET', '/api/live_events', {page: '3', 'per_page': 30}, null).then(
-      (data) => {
+    return client.sendRequest('GET', '/api/live_events', {page: '3', 'per_page': 30}, null).
+      then((data) => {
         assert.deepEqual(data, eventList);
-        done();
-      }
-    );
+      });
   });
 
-  it('sendRequest should send data and resolve promise on response', (done) => {
+  it('sendRequest should send data and resolve promise with parsed data on response', () => {
     const client = new ElementalClient('http://my-elemental-server');
-    const eventList = [{name: 'Live event 1'}, {name: 'Live event 2'}];
+    const eventList = {'live_event_list': {
+      'live_event': [
+        {
+          '$': {href: '/live_events/1'},
+          name: 'Event 1',
+          input: {name: 'input_1'},
+        },
+        {
+          '$': {href: '/live_events/2'},
+          name: 'Event 2',
+          input: {name: 'input_1'},
+        },
+      ],
+    }};
 
     client.req = (opts, callback) => {
       assert.deepEqual(opts, {
         method: 'POST',
         url: '/api/live_events',
         qs: null,
-        headers: {'Content-Type': 'application/json'},
-        json: true,
-        body: {name: 'My live event!'},
+        headers: {'Content-Type': 'application/xml'},
+        body: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><name>My live event!</name>',
       });
-      callback(null, {statusCode: 200}, eventList);
+      callback(null, {statusCode: 200, headers: {'content-type': 'application/xml'}}, xmlEventList);
     };
 
-    client.sendRequest('POST', '/api/live_events', null, {name: 'My live event!'}).then(
+    return client.sendRequest('POST', '/api/live_events', null, {name: 'My live event!'}).then(
       (data) => {
         assert.deepEqual(data, eventList);
-        done();
       }
     );
   });
