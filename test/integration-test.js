@@ -48,5 +48,5 @@ describe('integration tests', () => {
       then((data) => {
         console.log(data);
       });
-  })
+  });
 });
