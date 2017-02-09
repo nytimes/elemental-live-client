@@ -31,6 +31,7 @@ The following resources are currently available:
 * ``liveEventProfiles``
 * ``presets``
 * ``presetCategories``
+* ``devices``
 
 ### Available operations
 
