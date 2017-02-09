@@ -43,5 +43,5 @@ Common operations are:
 * ``delete``
 * ``list``
 
-Some resource might include more specific operations (for example, resetting a
+Some resources might include more specific operations (for example, resetting a
 live event).
