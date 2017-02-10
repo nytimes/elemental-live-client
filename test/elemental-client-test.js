@@ -138,9 +138,10 @@ describe('ElementalClient', () => {
   });
 
   it('format date should return date in ISO format', () => {
-    const date = new Date('2017-02-10 11:57:03');
-
-    assert.equal(date.toISOString(), ElementalClient.formatDate(date));
+    assert.equal('2017-02-10 11:57:03 +0000', ElementalClient.formatDate(new Date('2017-02-10 11:57:03 +0000')));
+    assert.equal('2017-02-10 11:57:03 +0000', ElementalClient.formatDate(new Date('2017-02-10T11:57:03Z')));
+    assert.equal('2017-02-10 11:58:03 +0000', ElementalClient.formatDate(new Date('2017-02-10T11:58:03Z')));
+    assert.equal('2017-02-11 02:58:03 +0000', ElementalClient.formatDate(new Date('2017-02-10 23:58:03 -0300')));
   });
 
   it('extractIdFromHref should return ID from the object href', () => {
