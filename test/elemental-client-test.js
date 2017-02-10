@@ -142,4 +142,23 @@ describe('ElementalClient', () => {
 
     assert.equal(date.toISOString(), ElementalClient.formatDate(date));
   });
+
+  it('extractIdFromHref should return ID from the object href', () => {
+    const obj = {'$': {href: '/live_event_profiles/120'}};
+
+    assert.equal('120', ElementalClient.extractIdFromHref(obj));
+  });
+
+  it('extractIdFromHref should return empty string when no id is found', () => {
+    const obj = {'$': {href: '/live_event_profiles/120/wat'}};
+
+    assert.equal('', ElementalClient.extractIdFromHref(obj));
+  });
+
+  it('extractIdFromHref should return empty string parameter is invalid', () => {
+    const obj = {'$': {}};
+
+    assert.equal('', ElementalClient.extractIdFromHref(obj));
+    assert.equal('', ElementalClient.extractIdFromHref(''));
+  });
 });
