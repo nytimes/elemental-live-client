@@ -136,4 +136,10 @@ describe('ElementalClient', () => {
 
     assert.deepEqual(devices, new Resource(client, 'devices'));
   });
+
+  it('format date should return date in ISO format', () => {
+    const date = new Date('2017-02-10 11:57:03');
+
+    assert.equal(date.toISOString(), ElementalClient.formatDate(date));
+  });
 });
