@@ -134,4 +134,38 @@ describe('integration tests', () => {
           then((stopData) => le.resetEvent(stopData.live_event.id));
       });
   });
+
+  test('create, get and delete schedule', () => {
+    const interval = 15 * 60 * 1000;
+    const now = new Date();
+    const fileInput = process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_FILE_INPUT
+      ? process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_FILE_INPUT
+      : '/some/source/file.mov';
+    const scheduleParams = {
+      schedule: {
+        name: `scheduled-event-${Math.random()}`,
+        input: {
+          'file_input': {
+            'uri': fileInput,
+          },
+        },
+        'start_time': ElementalClient.formatDate(new Date(now.getTime() + interval)),
+        'end_type': 'duration',
+        'duration': 120,
+        'until': 'forever',
+      },
+    };
+
+    return client.liveEventProfiles().list().
+      then((data) => {
+        const profile = Array.isArray(data.live_event_profile_list.live_event_profile)
+          ? data.live_event_profile_list.live_event_profile[0]
+          : data.live_event_profile_list.live_event_profile;
+
+        scheduleParams.schedule.profile = ElementalClient.extractIdFromHref(profile);
+
+        return client.schedules().create(scheduleParams);
+      }).
+      then((data) => client.schedules().delete(data.schedule.id));
+  });
 });
