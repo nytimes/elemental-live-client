@@ -160,7 +160,7 @@ describe('integration tests', () => {
             'uri': fileInput,
           },
         },
-        'start_time': ElementalClient.formatDate(new Date(now.getTime() + interval)),
+        'start_time': ElementalClient.formatDate(new Date(now.setSeconds(0, 0)  + interval)),
         'end_type': 'duration',
         'duration': 120,
         'until': 'forever',
