@@ -5,6 +5,17 @@ describe('integration tests', () => {
   const client = new ElementalClient(process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST);
   let eventsToClean = [];
 
+  const randomString = (length) => {
+    const values = 'ABCDEFGHIJKLMNOPQRTUVWHXYZabcdefghijklmnopqrtuvwhxyz0123456789';
+    let result = '';
+
+    for (let i = 0; i < length; i++) {
+      result += values.charAt(Math.floor(Math.random() * values.length));
+    }
+
+    return result;
+  };
+
   afterEach(() => {
     const promises = eventsToClean.map((el) =>
       client.liveEvents().cancelEvent(el).
@@ -21,7 +32,7 @@ describe('integration tests', () => {
   });
 
   test('create, get, start, stop and reset a live event using file input', () => {
-    const rand = Math.random();
+    const rand = randomString(10);
     const fileInput = process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_FILE_INPUT
       ? process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_FILE_INPUT
       : '/some/source/file.mov';
@@ -143,7 +154,7 @@ describe('integration tests', () => {
       : '/some/source/file.mov';
     const scheduleParams = {
       schedule: {
-        name: `scheduled-event-${Math.random()}`,
+        name: `tests-scheduled-event-${randomString(6)}`,
         input: {
           'file_input': {
             'uri': fileInput,
