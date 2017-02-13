@@ -6,6 +6,8 @@
   "rules": {
     "no-process-env": "off",
     "max-statements": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-plusplus": "off",
+    "id-length": "off"
   }
 }
