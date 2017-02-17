@@ -1,4 +1,4 @@
-import ElementalClient from '../lib/elemental-client';
+import ElementalClient from '../lib/main';
 
 describe('integration tests', () => {
   const test = process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST ? it : it.skip;

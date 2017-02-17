@@ -1,4 +1,4 @@
-import ElementalClient from '../lib/elemental-client';
+import ElementalClient from '../lib/main';
 import {LiveEvent} from '../lib/live-event';
 import {Resource} from '../lib/resource';
 import {assert} from 'chai';
