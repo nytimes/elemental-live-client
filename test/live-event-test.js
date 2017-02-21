@@ -34,7 +34,7 @@ describe('LiveEvent', () => {
     const result = testData.instance.eventStatus(199);
 
     assert.equal(result, testData.retval);
-    assert(testData.sendRequest.calledWith('GET', '/api/live_events/199/status'));
+    assert(testData.sendRequest.calledWith('GET', '/api/live_events/199/status', null, null, {'Accept': 'application/json'}));
   })
 
   it('startEvent should send request to start event', () => {
