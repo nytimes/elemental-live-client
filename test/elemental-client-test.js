@@ -1,8 +1,9 @@
-import ElementalClient from '../lib/main';
-import {LiveEvent} from '../lib/live-event';
-import {Resource} from '../lib/resource';
-import {assert} from 'chai';
-import {xmlEventList} from './data-test';
+const assert = require('chai').assert;
+const xmlEventList = require('./data-test');
+
+const ElementalClient = require('../lib/main').ElementalClient;
+const LiveEvent = require('../lib/live-event').LiveEvent;
+const Resource = require('../lib/resource').Resource;
 
 describe('ElementalClient', () => {
   it('sendRequest should support "data-less" requests and resolve promise on response', () => {
