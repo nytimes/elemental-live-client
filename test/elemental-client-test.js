@@ -1,6 +1,7 @@
 const assert = require('chai').assert;
 const xmlEventList = require('./data-test');
 
+const Device = require('../lib/device').Device;
 const ElementalClient = require('../lib/main').ElementalClient;
 const LiveEvent = require('../lib/live-event').LiveEvent;
 const Resource = require('../lib/resource').Resource;
@@ -131,11 +132,12 @@ describe('ElementalClient', () => {
     assert.deepEqual(presetCategories, new Resource(client, 'preset_categories'));
   });
 
-  it('devices should return a devices Resource', () => {
+  it('devices should return an instance of Devices', () => {
     const client = new ElementalClient('http://my-elemental-server');
     const devices = client.devices();
 
-    assert.deepEqual(devices, new Resource(client, 'devices'));
+    assert(devices instanceof Device);
+    assert.equal(devices.elementalClient, client);
   });
 
   it('format date should return date in ISO format', () => {
