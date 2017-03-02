@@ -1,6 +1,6 @@
 {
   "name": "elemental-live-client",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "JS library to communicate with Elemental live API",
   "directories": {
     "lib": "./lib"
