@@ -30,7 +30,8 @@ describe('Device', () => {
 
     return dvc.preview({id: 123, width: 854, height: 480}).then((data) => {
       assert.deepEqual(data, previewImage);
-      assert(sendRequest.calledWith('POST', '/api/devices/123/preview', null, {
+
+      const expectedParams = {
         'preview_images': {
           'preview_image': {
             width: 854,
@@ -38,7 +39,17 @@ describe('Device', () => {
             name: 'device-123-preview.jpg',
           },
         },
-      }));
+      };
+      const call = sendRequest.getCalls()[0];
+      const params = call.args[3];
+      const name = params.preview_images.preview_image.name;
+
+      expectedParams.preview_images.preview_image.name = name;
+      assert.deepEqual(params, expectedParams);
+      assert.equal(call.args[0], 'POST');
+      assert.equal(call.args[1], '/api/devices/123/preview');
+      assert.equal(call.args[2], null);
+      assert.match(name, /^device-123-[\d.]+-preview.jpg$/);
     });
   });
 
