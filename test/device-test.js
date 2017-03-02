@@ -28,7 +28,7 @@ describe('Device', () => {
     const sendRequest = sinon.stub().returns(retval);
     const dvc = new Device({sendRequest});
 
-    return dvc.preview({id: 123, width: 854, height: 480}).then((data) => {
+    return dvc.preview({id: 123, name: 'device-123-preview.jpg', width: 854, height: 480}).then((data) => {
       assert.deepEqual(data, previewImage);
       assert(sendRequest.calledWith('POST', '/api/devices/123/preview', null, {
         'preview_images': {
@@ -50,15 +50,19 @@ describe('Device', () => {
     };
 
     it('id', () => {
-      test({width: 1280, height: 720}, 'missing device id');
+      test({name: 'some-preview', width: 1280, height: 720}, 'missing device id');
+    });
+
+    it('name', () => {
+      test({id: '123', width: 1280, height: 720}, 'missing preview name');
     });
 
     it('width', () => {
-      test({id: '123', height: 720}, 'missing preview width');
+      test({id: '123', name: 'some-preview', height: 720}, 'missing preview width');
     });
 
     it('height', () => {
-      test({id: '123', width: 1280}, 'missing preview height');
+      test({id: '123', name: 'some-preview', width: 1280}, 'missing preview height');
     });
   });
 });
