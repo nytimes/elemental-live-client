@@ -2,7 +2,7 @@ import {ElementalClient} from '../lib/main';
 
 describe('integration tests', () => {
   const test = process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST ? it : it.skip;
-  const client = new ElementalClient(process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST);
+  const client = new ElementalClient(process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST || '');
   let eventsToClean = [];
 
   const randomString = (length) => {

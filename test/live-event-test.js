@@ -7,9 +7,10 @@ describe('LiveEvent', () => {
   const getInstance = () => {
     const retval = {key: 'value'};
     const sendRequest = sinon.stub().returns(retval);
-    const le = new LiveEvent({sendRequest});
+    const serverUrl = 'http://localhost:9090';
+    const le = new LiveEvent({sendRequest, serverUrl});
 
-    return {instance: le, retval, sendRequest};
+    return {instance: le, retval, sendRequest, serverUrl};
   };
 
   it('LiveEvent should be a Resource', () => {
@@ -115,5 +116,12 @@ describe('LiveEvent', () => {
 
     assert.equal(result, testData.retval);
     assert(testData.sendRequest.calledWith('POST', '/api/live_events/199/priority', null, {'priority': 1}));
+  });
+
+  it('eventProgressPreview should return the jpg url', () => {
+    const testData = getInstance();
+    const progress = testData.instance.eventProgressPreview(128);
+
+    assert.equal(progress, `${testData.serverUrl}/images/thumbs/progress_job_128.jpg`);
   });
 });
