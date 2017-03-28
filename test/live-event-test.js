@@ -124,4 +124,12 @@ describe('LiveEvent', () => {
 
     assert.equal(progress, `${testData.serverUrl}/images/thumbs/progress_job_128.jpg`);
   });
+
+  it('activateInput should send request to activate an input with proper parameters', () => {
+    const testData = getInstance();
+    const result = testData.instance.activateInput(195, 465);
+
+    assert.equal(result, testData.retval);
+    assert(testData.sendRequest.calledWith('POST', '/api/live_events/195/activate_input', null, {'input_id': 465}));
+  });
 });
