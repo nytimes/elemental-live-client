@@ -28,6 +28,41 @@ describe('ElementalClient', () => {
       });
   });
 
+  it('sendRequest should send raw-data if content-type is declared', () => {
+    const client = new ElementalClient('http://my-elemental-server');
+    const eventList = {'live_event_list': {
+      'live_event': [
+        {
+          '$': {href: '/live_events/1'},
+          name: 'Event 1',
+          input: {name: 'input_1'},
+        },
+        {
+          '$': {href: '/live_events/2'},
+          name: 'Event 2',
+          input: {name: 'input_1'},
+        },
+      ],
+    }};
+
+    client.req = (opts, callback) => {
+      assert.deepEqual(opts, {
+        method: 'POST',
+        url: '/api/live_events',
+        qs: null,
+        headers: {'Content-Type': 'text/plain'},
+        body: 'some nice data',
+      });
+      callback(null, {statusCode: 200, headers: {'content-type': 'application/xml'}}, xmlEventList);
+    };
+
+    return client.sendRequest('POST', '/api/live_events', null, 'some nice data', {'Content-Type': 'text/plain'}).then(
+      (data) => {
+        assert.deepEqual(data, eventList);
+      }
+    );
+  });
+
   it('sendRequest should send data and resolve promise with parsed data on response', () => {
     const client = new ElementalClient('http://my-elemental-server');
     const eventList = {'live_event_list': {
