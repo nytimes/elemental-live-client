@@ -16,10 +16,9 @@ fail with details about the failure. An example, listing presets:
 ```javascript
 const client = new ElementalClient('https://elemental-server.example.com');
 
-client.presets().list().then(
-  (data) => console.log(`Got presets: ${data}`),
-  (err) => console.log(`Something went wrong: ${err}`),
-);
+client.presets().list()
+  .then((data) => console.log(`Got presets: ${data}`))
+  .catch((err) => console.log(`Something went wrong: ${err}`));
 ```
 
 ### Available resources
