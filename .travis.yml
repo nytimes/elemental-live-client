@@ -3,14 +3,8 @@ node_js:
   - 6
   - 7
   - 8
-addons:
-  apt:
-    sources:
-      - sourceline: "deb https://dl.yarnpkg.com/debian/ stable main"
-    packages:
-      - yarn
 install:
-  - npm install -g codecov
+  - npm install -g codecov yarn
   - yarn
 script:
   - yarn lint
