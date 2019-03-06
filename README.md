@@ -1,7 +1,7 @@
 # elemental-live-client
 
-[![Build Status](https://travis-ci.org/NYTimes/elemental-live-client.svg?branch=master)](https://travis-ci.org/NYTimes/elemental-live-client)
-[![codecov](https://codecov.io/gh/NYTimes/elemental-live-client/branch/master/graph/badge.svg)](https://codecov.io/gh/NYTimes/elemental-live-client)
+[![Build Status](https://travis-ci.org/nytimes/elemental-live-client.svg?branch=master)](https://travis-ci.org/nytimes/elemental-live-client)
+[![codecov](https://codecov.io/gh/nytimes/elemental-live-client/branch/master/graph/badge.svg)](https://codecov.io/gh/nytimes/elemental-live-client)
 
 JS library to communicate with Elemental live API.
 
