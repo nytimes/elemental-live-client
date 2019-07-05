@@ -48,9 +48,7 @@ live event).
 ## Contributing
 
 Contributions are welcome! In order to run this project locally, you have to
-have node.js 6+ installed locally. We also recommend using
-[yarn](https://yarnpkg.com) for managing dependencies, but plain-old npm should
-work just fine.
+have node.js 6+ installed locally.
 
 Just make sure your contributions pass the test suite and eslint validation.
 [Travis CI](https://travis-ci.org/NYTimes/elemental-live-client/) will help you
@@ -59,10 +57,10 @@ in ensuring that :)
 ### Setting up local environment
 
 Setting up the local environment is a simple task: just ensure that you have
-node.js and yarn installed, clone this repo and then run:
+node.js and npm installed, clone this repo and then run:
 
 ```
-% yarn
+% npm install
 ```
 
 This will install all dependencies.
@@ -72,14 +70,14 @@ This will install all dependencies.
 After installing all dependencies, you can run the tests with the command:
 
 ```
-% yarn test
+% npm run test
 ```
 
 linting is also available, provided by eslint. The command to lint the source
 is very intuitive:
 
 ```
-% yarn lint
+% npm run lint
 ```
 
 ## Integration tests/Examples
@@ -91,8 +89,8 @@ use the client.
 
 To run integration tests locally, you need to provide the address of an actual
 Elemental server through the environment variable
-``ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST`` and run ``yarn test``. For example:
+``ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST`` and run ``npm run test``. For example:
 
 ```
-% ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST=http://elemental-live.example.com yarn test
+% ELEMENTAL_CLIENT_INTEGRATION_TESTS_HOST=http://elemental-live.example.com npm run test
 ```
