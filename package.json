@@ -6,8 +6,8 @@
     "lib": "./lib"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register --reporter spec --timeout 5000",
-    "coverage": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- --compilers js:babel-register --reporter spec",
+    "test": "mocha --require babel-core/register --reporter spec --timeout 5000",
+    "coverage": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- --require babel-core/register --reporter spec",
     "build": "babel -s -d dist lib",
     "lint": "eslint lib test"
   },
