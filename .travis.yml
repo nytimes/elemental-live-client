@@ -4,12 +4,11 @@ node_js:
   - 10
   - 12
 install:
-  - npm install -g codecov yarn
-  - yarn
+  - npm ci
 script:
-  - yarn lint
-  - yarn coverage
-  - codecov
+  - npm run lint
+  - npm run coverage
+  - npx codecov
 notifications:
   slack:
     on_success: change
