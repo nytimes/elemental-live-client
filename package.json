@@ -6,8 +6,8 @@
     "lib": "./lib"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register --reporter spec --timeout 5000",
-    "coverage": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- --compilers js:babel-register --reporter spec",
+    "test": "mocha --require babel-core/register --reporter spec --timeout 5000",
+    "coverage": "istanbul cover node_modules/.bin/_mocha --report lcovonly -- --require babel-core/register --reporter spec",
     "build": "babel -s -d dist lib",
     "lint": "eslint lib test"
   },
@@ -26,7 +26,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "istanbul": "v1.1.0-alpha.1",
-    "mocha": "^3.2.0",
+    "mocha": "^6.1.4",
     "sinon": "^1.17.7"
   },
   "dependencies": {
