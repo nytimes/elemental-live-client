@@ -35,8 +35,16 @@ describe('LiveEvent', () => {
     const result = testData.instance.eventStatus(199);
 
     assert.equal(result, testData.retval);
+    assert(testData.sendRequest.calledWith('GET', '/api/live_events/199/status'));
+  });
+
+  it('eventStatus should allow for optional headers to be provided', () => {
+    const testData = getInstance();
+    const result = testData.instance.eventStatus(199, {'Accept': 'application/json'});
+
+    assert.equal(result, testData.retval);
     assert(testData.sendRequest.calledWith('GET', '/api/live_events/199/status', null, null, {'Accept': 'application/json'}));
-  })
+  });
 
   it('startEvent should send request to start event', () => {
     const testData = getInstance();
