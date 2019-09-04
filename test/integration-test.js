@@ -47,6 +47,10 @@ describe('integration tests', () => {
             'uri': fileInput,
           },
         },
+        'failure_rule': {
+          'priority': '50',
+          'restart_on_failure': 'false',
+        },
         'stream_assembly': [
           {
             'name': 'stream1',
