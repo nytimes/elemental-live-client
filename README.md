@@ -10,12 +10,24 @@ JS library to communicate with Elemental live API.
 The client provides standard methods for resources, so calls will use be
 structured in the format ``<client-instance>.<resource>().<operation>()``.
 
+First, initialize the client. Optionally, provide any extra headers to add to
+requests. Note, adding a version string is optional but instructs the client
+to use that version in requests to the API.
+
+```javascript
+const client = new ElementalClient('https://elemental-server.example.com');
+```
+
+or
+
+```javascript
+const client = new ElementalClient('https://elemental-server.example.com', { 'X-API-Key': 'anApiKey' },'v2.15.3.0');
+```
+
 API operations always return promises that resolve with the response data and
 fail with details about the failure. An example, listing presets:
 
 ```javascript
-const client = new ElementalClient('https://elemental-server.example.com');
-
 client.presets().list()
   .then((data) => console.log(`Got presets: ${data}`))
   .catch((err) => console.log(`Something went wrong: ${err}`));
