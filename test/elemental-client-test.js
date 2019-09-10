@@ -22,7 +22,7 @@ describe('ElementalClient', () => {
       callback(null, {statusCode: 200, headers: {}}, eventList);
     };
 
-    return client.sendRequest('GET', '/api/live_events', {page: '3', 'per_page': 30}, null).
+    return client.sendRequest('GET', '/live_events', {page: '3', 'per_page': 30}, null).
       then((data) => {
         assert.deepEqual(data, eventList);
       });
@@ -56,7 +56,7 @@ describe('ElementalClient', () => {
       callback(null, {statusCode: 200, headers: {'content-type': 'application/xml'}}, xmlEventList);
     };
 
-    return client.sendRequest('POST', '/api/live_events', null, 'some nice data', {'Content-Type': 'text/plain'}).then(
+    return client.sendRequest('POST', '/live_events', null, 'some nice data', {'Content-Type': 'text/plain'}).then(
       (data) => {
         assert.deepEqual(data, eventList);
       }
@@ -91,7 +91,7 @@ describe('ElementalClient', () => {
       callback(null, {statusCode: 200, headers: {'content-type': 'application/xml'}}, xmlEventList);
     };
 
-    return client.sendRequest('POST', '/api/live_events', null, {name: 'My live event!'}).then(
+    return client.sendRequest('POST', '/live_events', null, {name: 'My live event!'}).then(
       (data) => {
         assert.deepEqual(data, eventList);
       }
@@ -105,7 +105,7 @@ describe('ElementalClient', () => {
       callback({error: 'failed to resolve name'});
     };
 
-    client.sendRequest('GET', '/api/live_events/1233', null, null).then(
+    client.sendRequest('GET', '/live_events/1233', null, null).then(
       () => assert(false),
       (reason) => {
         assert.deepEqual(reason, {error: 'failed to resolve name'});
@@ -121,7 +121,7 @@ describe('ElementalClient', () => {
       callback(null, {statusCode: 404}, {'errors': []});
     };
 
-    client.sendRequest('GET', '/api/live_events/1233', null, null).then(
+    client.sendRequest('GET', '/live_events/1233', null, null).then(
       () => assert(false),
       (reason) => {
         assert.equal(reason.statusCode, 404);

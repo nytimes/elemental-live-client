@@ -30,7 +30,7 @@ describe('Device', () => {
 
     return dvc.preview({id: 123, name: 'device-123-preview.jpg', width: 854, height: 480}).then((data) => {
       assert.deepEqual(data, previewImage);
-      assert(sendRequest.calledWith('POST', '/api/devices/123/preview', null, {
+      assert(sendRequest.calledWith('POST', '/devices/123/preview', null, {
         'preview_images': {
           'preview_image': {
             width: 854,
