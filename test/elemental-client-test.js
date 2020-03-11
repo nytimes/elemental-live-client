@@ -22,7 +22,7 @@ describe('ElementalClient', () => {
       callback(null, {statusCode: 200, headers: {}}, eventList);
     };
 
-    return client.sendRequest('GET', '/api/live_events', {page: '3', 'per_page': 30}, null).
+    return client.sendRequest('GET', '/live_events', {page: '3', 'per_page': 30}, null).
       then((data) => {
         assert.deepEqual(data, eventList);
       });
@@ -56,7 +56,7 @@ describe('ElementalClient', () => {
       callback(null, {statusCode: 200, headers: {'content-type': 'application/xml'}}, xmlEventList);
     };
 
-    return client.sendRequest('POST', '/api/live_events', null, 'some nice data', {'Content-Type': 'text/plain'}).then(
+    return client.sendRequest('POST', '/live_events', null, 'some nice data', {'Content-Type': 'text/plain'}).then(
       (data) => {
         assert.deepEqual(data, eventList);
       }
@@ -91,9 +91,66 @@ describe('ElementalClient', () => {
       callback(null, {statusCode: 200, headers: {'content-type': 'application/xml'}}, xmlEventList);
     };
 
-    return client.sendRequest('POST', '/api/live_events', null, {name: 'My live event!'}).then(
+    return client.sendRequest('POST', '/live_events', null, {name: 'My live event!'}).then(
       (data) => {
         assert.deepEqual(data, eventList);
+      }
+    );
+  });
+
+  it('sendRequest should not include version number in GET requests', () => {
+    const client = new ElementalClient('http://my-elemental-server', null, 'v2.17.3.0');
+    const eventList = {'live_event_list': {
+      'live_event': [
+        {
+          '$': {href: '/live_events/1'},
+          name: 'Event 1',
+          input: {name: 'input_1'},
+        },
+        {
+          '$': {href: '/live_events/2'},
+          name: 'Event 2',
+          input: {name: 'input_1'},
+        },
+      ],
+    }};
+
+    client.req = (opts, callback) => {
+      assert.deepEqual(opts, {
+        method: 'GET',
+        url: '/api/live_events',
+        qs: null,
+        headers: {},
+        body: null,
+      });
+      callback(null, {statusCode: 200, headers: {'content-type': 'application/xml'}}, xmlEventList);
+    };
+
+    return client.sendRequest('GET', '/live_events', null).then(
+      (data) => {
+        assert.deepEqual(data, eventList);
+      }
+    );
+  });
+
+  it('sendRequest should include version number in PUT requests', () => {
+    const client = new ElementalClient('http://my-elemental-server', null, 'v2.17.3.0');
+    const body = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><name>My live event!</name>';
+
+    client.req = (opts, callback) => {
+      assert.deepEqual(opts, {
+        method: 'PUT',
+        url: '/api/v2.17.3.0/live_events/5',
+        qs: null,
+        headers: {'Content-Type': 'application/xml'},
+        body,
+      });
+      callback(null, {statusCode: 200, headers: {'content-type': 'application/xml'}}, body);
+    };
+
+    return client.sendRequest('PUT', '/live_events/5', null, {name: 'My live event!'}).then(
+      (data) => {
+        assert.deepEqual(data, {name: 'My live event!'});
       }
     );
   });
@@ -105,7 +162,7 @@ describe('ElementalClient', () => {
       callback({error: 'failed to resolve name'});
     };
 
-    client.sendRequest('GET', '/api/live_events/1233', null, null).then(
+    client.sendRequest('GET', '/live_events/1233', null, null).then(
       () => assert(false),
       (reason) => {
         assert.deepEqual(reason, {error: 'failed to resolve name'});
@@ -121,7 +178,7 @@ describe('ElementalClient', () => {
       callback(null, {statusCode: 404}, {'errors': []});
     };
 
-    client.sendRequest('GET', '/api/live_events/1233', null, null).then(
+    client.sendRequest('GET', '/live_events/1233', null, null).then(
       () => assert(false),
       (reason) => {
         assert.equal(reason.statusCode, 404);

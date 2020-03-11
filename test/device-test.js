@@ -30,7 +30,7 @@ describe('Device', () => {
 
     return dvc.preview({id: 123, name: 'device-123-preview.jpg', width: 854, height: 480}).then((data) => {
       assert.deepEqual(data, previewImage);
-      assert(sendRequest.calledWith('POST', '/api/devices/123/preview', null, {
+      assert(sendRequest.calledWith('POST', '/devices/123/preview', null, {
         'preview_images': {
           'preview_image': {
             width: 854,
@@ -64,28 +64,5 @@ describe('Device', () => {
     it('height', () => {
       test({id: '123', name: 'some-preview', width: 1280}, 'missing preview height');
     });
-  });
-
-  describe('generate preview', () => {
-    const retval = {};
-    const sendRequest = sinon.stub().returns(retval);
-    const dvc = new Device({sendRequest});
-    const result = dvc.generatePreview({id: '10', sourceType: 'DeviceInput,2,1,AJA,HD-SDI'});
-    const expectedBody = 'input_key=0&live_event[inputs_attributes][0][source_type]=DeviceInput,2,1,AJA,HD-SDI&live_event[inputs_attributes][0][device_input_attributes][sdi_settings_attributes][input_format]=Auto&live_event[inputs_attributes][0][device_input_attributes][device_id]=10';
-    const expectedHeaders = {
-      Accept: '*/*',
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    };
-
-    assert.equal(result, retval);
-    assert(sendRequest.calledOnce);
-
-    const args = sendRequest.getCall(0).args;
-
-    assert.equal(args[0], 'POST');
-    assert.equal(args[1], '/inputs/generate_preview');
-    assert.equal(args[2], null);
-    assert.equal(args[3], expectedBody);
-    assert.deepEqual(args[4], expectedHeaders);
   });
 });
