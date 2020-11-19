@@ -31,7 +31,7 @@
     "sinon": "^9.0.0"
   },
   "dependencies": {
-    "dateformat": "^3.0.3",
+    "dateformat": "^4.0.0",
     "request": "^2.88.0",
     "xml2js": "^0.4.23"
   }
