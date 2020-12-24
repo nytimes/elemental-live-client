@@ -1,6 +1,6 @@
 {
   "name": "elemental-live-client",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "JS library to communicate with Elemental live API",
   "directories": {
     "lib": "./lib"
@@ -21,18 +21,19 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
-    "codecov": "^3.6.5",
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
+    "codecov": "^3.8.1",
+    "eslint": "^7.16.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
     "istanbul": "v1.1.0-alpha.1",
-    "mocha": "^7.0.1",
-    "sinon": "^9.0.0"
+    "mocha": "^8.2.1",
+    "sinon": "^9.2.2"
   },
   "dependencies": {
-    "dateformat": "^3.0.3",
-    "request": "^2.88.0",
+    "dateformat": "^4.4.1",
+    "request": "^2.88.2",
     "xml2js": "^0.4.23"
   }
 }
