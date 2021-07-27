@@ -29,7 +29,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "istanbul": "v1.1.0-alpha.1",
     "mocha": "^8.2.1",
-    "sinon": "^9.2.2"
+    "sinon": "^11.1.2"
   },
   "dependencies": {
     "dateformat": "^4.4.1",
