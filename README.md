@@ -1,7 +1,7 @@
 # elemental-live-client
 
-[![Build Status](https://travis-ci.org/nytimes/elemental-live-client.svg?branch=master)](https://travis-ci.org/nytimes/elemental-live-client)
-[![codecov](https://codecov.io/gh/nytimes/elemental-live-client/branch/master/graph/badge.svg)](https://codecov.io/gh/nytimes/elemental-live-client)
+[![Build Status](https://travis-ci.org/nytimes/elemental-live-client.svg?branch=main)](https://travis-ci.org/nytimes/elemental-live-client)
+[![codecov](https://codecov.io/gh/nytimes/elemental-live-client/branch/main/graph/badge.svg)](https://codecov.io/gh/nytimes/elemental-live-client)
 
 JS library to communicate with Elemental live API.
 
@@ -95,7 +95,7 @@ is very intuitive:
 ## Integration tests/Examples
 
 You can integration tests in the file
-[test/integration-test.js](https://github.com/NYTimes/elemental-live-client/blob/master/test/integration-test.js)
+[test/integration-test.js](https://github.com/NYTimes/elemental-live-client/blob/main/test/integration-test.js)
 file. It contains integration tests that can also serve as examples on how to
 use the client.
 

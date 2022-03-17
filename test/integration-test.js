@@ -38,7 +38,7 @@ describe('integration tests', () => {
       : '/some/source/file.mov';
     const destinationURI = process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_DESTINATION_URI
       ? process.env.ELEMENTAL_CLIENT_INTEGRATION_TESTS_DESTINATION_URI
-      : `https://post.host.example.com/integration-tests-${rand}/master`;
+      : `https://post.host.example.com/integration-tests-${rand}/main`;
     const eventParams = {
       'live_event': {
         'name': `integration-tests-${rand}`,
